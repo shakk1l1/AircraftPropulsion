@@ -40,7 +40,9 @@ while on:
                 print("Tt1 not defined")
                 ListOfEquation.variables_values["Tt1"] = FailSafe.inputtofloat("Tt1: ")
 
-            iterationTt2.iterateT2(ListOfEquation.variables_values["pressureRatio"], ListOfEquation.variables_values["isentropic efficiency Compressor"], ListOfEquation.variables_values["Tt1"], ListOfEquation.variables_values["r"])
+            ListOfEquation.variables_values["Tt2"], ListOfEquation.variables_values["gamma"] = (
+                iterationTt2.iterateT2(ListOfEquation.variables_values["pressureRatio"], ListOfEquation.variables_values["isentropic efficiency Compressor"],
+                                       ListOfEquation.variables_values["Tt1"], ListOfEquation.variables_values["r"]))
 
         case "define":
             var_name = input("Enter variable name to define: ")

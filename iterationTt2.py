@@ -18,3 +18,4 @@ def iterateT2(pressureRatio, isentEffCompr, Tt1, r):
         print("New gamma: ", gamma)
     print("Final Gamma: ", Ttc)
     print("Final Tt2: ", Tt2)
+    return Tt2, gamma

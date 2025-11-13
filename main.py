@@ -40,7 +40,7 @@ while on:
                 print("Tt1 not defined")
                 ListOfEquation.variables_values["Tt1"] = FailSafe.inputtofloat("Tt1: ")
 
-            ListOfEquation.variables_values["Tt2"], ListOfEquation.variables_values["gamma"] = (
+            ListOfEquation.variables_values["Tt2"], ListOfEquation.variables_values["gamma"], ListOfEquation.variables_values["Cp"] = (
                 iterationTt2.iterateT2(ListOfEquation.variables_values["pressureRatio"], ListOfEquation.variables_values["isentropic efficiency Compressor"],
                                        ListOfEquation.variables_values["Tt1"], ListOfEquation.variables_values["r"]))
 
@@ -59,7 +59,7 @@ while on:
 
         case "get equation":
             var_name = input("Enter variable name to get equation for: ")
-            FailSafe.strinlist(var_name, ListOfEquation.variables_dictionary.keys())
+            var_name = FailSafe.strinlist(var_name, ListOfEquation.variables_dictionary.keys())
             ListOfEquation.specific_equation(var_name)
 
         case "conversion":

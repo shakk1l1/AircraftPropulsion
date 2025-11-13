@@ -11,11 +11,22 @@ equations = [
     "mdota Cp2r (Tt2 - TR) + etacc * qc1 * mdotf = mdottot Cp3r (Tt3 - TR)",
     "Cpxy is Cp at Ttc = (Ttx + Tty) / 2",
     "SFC = mdotf / Pl",
+    "mdotf = SHP * SFC",
     "FAR obtained from graph with CP and Tt4",
     "Ta = Tt",
-    "pa = pt",
+    "pa = pt if velocity negligible",
     "EGT = Tt4",
-    "Tt2i / Tt1 = (pressureRatio) ** ((gamma - 1) / gamma)"
+    "Tt2i / Tt1 = (pressureRatio) ** ((gamma - 1) / gamma)",
+    "Tt2 = ((Tt2i - Tt1) / isentropic efficiency Compressor) + Tt1"
+    "gamma = obtain by iteration using Cp from graph at Ttc = (Tt1 + Tt2) / 2",
+    "Tt obtained by FAR and Cp guess and graph (iteration of Cp and Tt)",
+    "Pta = Pa * (1 + (gamma - 1) / 2 * Ma^2)^(gamma / (gamma - 1))",
+    "Tta = Ta * (1 + (gamma - 1) / 2 * Ma^2)",
+    "va = Ma * sqrt(gamma * r * Ta)",
+    "Pt1 = RR * Pta if nozzle",
+    "Tt1 = Tta if adiabatic inlet",
+    "T = ((mdota + mdotf) * vj - mdota * va)) + (P5 - Pa) * A5 mdotf might be negligible",
+    "P5 = Pa if fully expanded nozzle"
 ]
 
 variables_dictionary = {
@@ -54,7 +65,18 @@ variables_dictionary = {
     "Ta": "Ambient Temperature",
     "pa": "Ambient Pressure",
     "EGT": "Exhaust Gas Temperature",
-    "pressureRatio": "Pressure Ratio across the Compressor"
+    "pressureRatio": "Pressure Ratio across the Compressor",
+    "SHP": "Shaft Horsepower",
+    "Tta": "Total Temperature at Ambient",
+    "Pta": "Total Pressure at Ambient",
+    "Ma": "Mach Number",
+    "RR": "Ram Recovery Factor",
+    "Tt": "Total Temperature",
+    "T": "Thrust",
+    "P5": "Pressure at Nozzle Exit",
+    "va": "Ambient Velocity",
+    "vj": "Jet Velocity",
+    "A5": "Nozzle Exit Area"
 }
 
 variables_values = {
@@ -93,7 +115,18 @@ variables_values = {
     "Ta": None,
     "pa": None,
     "EGT": None,
-    "pressureRatio": None
+    "pressureRatio": None,
+    "SHP": None,
+    "Tta": None,
+    "Pta": None,
+    "Ma": None,
+    "RR": None,
+    "Tt": None,
+    "T": None,
+    "P5": None,
+    "va": None,
+    "vj": None,
+    "A5": None
 }
 
 def list_equations():

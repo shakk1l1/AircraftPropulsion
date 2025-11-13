@@ -33,13 +33,22 @@ def barToPa(x):
 def dinhpToW(x):
     return x*736
 
-def fToC(x):
-    return (x - 32) * (5/9)
+def fToK(x):
+    return ((x - 32) * (5/9))+ 273.15
 
 def hpimperialToW(x):
     return x*745.7
 
-unit = ["ft", "kt", "lb", "lbf", "kcal", "BTU", "R", "psi", "kgf/cm2", "bar", "DINhp", "°F", "hp(imperial)"]
+def lbphrTokgps(x):
+    return x*0.0001259979
+
+def lbpsTokgps(x):
+    return x*0.4627586207
+
+def lbtodaN(x):
+    return x*0.455
+
+unit = ["ft", "kt", "lb", "lbf", "kcal", "BTU", "R", "psi", "kgf/cm2", "bar", "DINhp", "°F", "hp(imperial)", "lbph"]
 
 def convert(value, from_unit):
     match from_unit:
@@ -66,9 +75,15 @@ def convert(value, from_unit):
         case "DINhp":
             return dinhpToW(value)
         case "°F":
-            return fToC(value)
+            return fToK(value)
         case "hp(imperial)":
             return hpimperialToW(value)
+        case "lbph":
+            return lbphrTokgps(value)
+        case "lb/s":
+            return lbpsTokgps(value)
+        case "lb (to daN)":
+            return lbtodaN(value)
         case _:
             return "Invalid unit"
 

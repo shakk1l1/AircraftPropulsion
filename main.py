@@ -28,7 +28,7 @@ while on:
             ListOfEquation.variables_values["pa"] = 101325
 
         case "Tt2 Iteration":
-            if ListOfEquation.variables_values.get("Pressure Ratio") == None:
+            if ListOfEquation.variables_values.get("pressureRatio") is None:
                 print("Pressure Ratio not defined")
                 ListOfEquation.variables_values["pressureRatio"] = FailSafe.inputtofloat("Pressure Ratio: ")
 
@@ -41,12 +41,12 @@ while on:
                 ListOfEquation.variables_values["Tt1"] = FailSafe.inputtofloat("Tt1: ")
 
             ListOfEquation.variables_values["Tt2"], ListOfEquation.variables_values["gamma"], ListOfEquation.variables_values["Cp"] = (
-                iterationTt2.iterateT2(ListOfEquation.variables_values["pressureRatio"], ListOfEquation.variables_values["isentropic efficiency Compressor"],
+                iterationTt2.iterateT(ListOfEquation.variables_values["pressureRatio"], ListOfEquation.variables_values["isentropic efficiency Compressor"],
                                        ListOfEquation.variables_values["Tt1"], ListOfEquation.variables_values["r"]))
 
         case "define":
             var_name = input("Enter variable name to define: ")
-            FailSafe.strinlist(var_name, ListOfEquation.variables_dictionary.keys())
+            var_name = FailSafe.strinlist(var_name, ListOfEquation.variables_dictionary.keys())
             var_value = FailSafe.inputtofloat(f"Enter value for {var_name}: ")
             ListOfEquation.variables_values[var_name] = var_value
             print(f"{var_name} set to {var_value}")
